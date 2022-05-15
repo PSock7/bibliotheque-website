@@ -1,12 +1,14 @@
 <!-- 
 @author : Caleb akoa , Stael Douanla, Pape Mouhamadou Sock -->
 <template>
-  <div>
-    <div class="row">
-    < v-for="article in articles" :key="article.id">
+  <div class="container">
+    <article v-for="article in articles" :key="article.id">
       <div class="article-img">
-        <div :style="{ backgroundImage: 'url(' + article.image + ')' }"></div>
+        <div>
+          <div :style="{ backgroundImage: 'url(' + article.image + ')' }"></div>
+        </div>
       </div>
+
       <div class="article-content" v-if="editingArticle.id !== article.id">
         <div class="article-title">
           <h2>{{ article.name }} - {{ article.price }}€</h2>
@@ -47,7 +49,6 @@
     </article>
     <button @click="showForm = !showForm">Ajouter un article</button>
     <add-article :show="showForm" @create-article="addArticle"></add-article>
-    
   </div>
 </template>
 
@@ -116,11 +117,19 @@ module.exports = {
 
 <style scoped>
 article {
+ width: 750px;
+  height: 423px;
+  margin: 80px auto;
+  background: #FFFFFF;
+  box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+  border-radius: 6px;
+ 
   display: flex;
+  flex-direction: column;
 }
 
-.article-img {
-  flex: 3;
+.img {
+  margin-right: 50px;
 }
 
 .article-img div {
@@ -130,12 +139,18 @@ article {
 }
 
 .article-content {
-  flex: 3;
+   padding: 20px 30px;
+  height: 120px;
+  display: flex;
+ 
 }
 
 .article-title {
-  display: flex;
-  justify-content: space-between;
+  height: 60px;
+  padding: 20px 30px;
+  color: #5E6977;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 textarea {
